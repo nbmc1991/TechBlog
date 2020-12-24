@@ -12,7 +12,7 @@ Blog.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        blog_title: {
+        title: {
             type: DataTypes.STRING(80),
             allowNull: false,
             validate: {
@@ -22,7 +22,7 @@ Blog.init(
                 },
             },
         },
-        blog_body: {
+        content: {
             type: DataTypes.STRING(300),
             allowNull: false,
             validate: {
