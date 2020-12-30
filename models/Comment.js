@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 //bring in database connection from config
 const sequelize = require('../config/connection');
 
@@ -8,17 +8,24 @@ class Comment extends Model { }
 
 Comment.init(
     {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     primaryKey: true,
+        //     autoIncrement: true,
+        // },
         comment: {
             type: DataTypes.STRING(400),
             allowNull: true,
             validate: {
                 len: [10, 400],
+            },
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id',
             },
         },
     },

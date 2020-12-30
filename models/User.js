@@ -1,7 +1,7 @@
-const { Model, Datatype, Sequelize, UUIDV4, DataTypes } = require('sequelize');
-
-const sequelize = require('../config/connection');
+const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
+const sequelize = require('../config/connection');
+
 
 //begin user model by extending off sequelizes modelclass
 class User extends Model {
