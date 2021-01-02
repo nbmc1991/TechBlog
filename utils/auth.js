@@ -2,7 +2,7 @@ const { lstat } = require("fs");
 
 const withAuth = (req, res, next) => {
     //redirect if not looged in
-    if (!req.session.loggeIn) {
+    if (!req.session.loggedIn) {
         res.redirect('/login');
     } else {
         next();

@@ -7,6 +7,11 @@ router.get('/', async (req, res) => {
     return res.json(userData);
 });
 
+router.post("/", async (req, res) => {
+    const userData = await User.create(req.body).catch(err => res.json(err))
+    return res.json(userData)
+})
+
 
 
 module.exports = router;

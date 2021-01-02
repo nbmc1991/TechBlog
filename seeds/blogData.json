@@ -1,0 +1,17 @@
+[
+    {
+        "title": "Easy Like Sunday Morning",
+        "content": "Today was A very productive day.",
+        "user_id": 1
+    },
+    {
+        "title": "testing 1",
+        "content": "today today today.",
+        "user_id": 2
+    },
+    {
+        "title": "testing 2",
+        "content": "today today 22.",
+        "user_id": 3
+    }
+]

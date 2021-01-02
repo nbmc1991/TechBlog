@@ -1,13 +1,20 @@
 const router = require('express').Router();
+const { Blog } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-const { Blog, User, Comment } = require('../../models');
-
-router.get('/', async (req, res) => {
-    const blogInfo = await Blog.findAll({
-        include: [{ model: User }, { model: Comment }],
-    });
-    return res.json(blogInfo);
+router.post('/', withAuth, async (req, res) => {
+    try {
+        const newBlog = await Blog.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+        res.status(200).json(newBlog);
+    } catch (err) {
+        res.status(400).json(err);
+    }
 });
 
 
 module.exports = router;
+
+

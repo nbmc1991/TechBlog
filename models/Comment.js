@@ -8,18 +8,22 @@ class Comment extends Model { }
 
 Comment.init(
     {
-        // id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     primaryKey: true,
-        //     autoIncrement: true,
-        // },
-        comment: {
-            type: DataTypes.STRING(400),
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        text: {
+            type: DataTypes.STRING,
             allowNull: true,
-            validate: {
-                len: [10, 400],
-            },
+        },
+        blog_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: "blog",
+                key: "id"
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
