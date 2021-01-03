@@ -13,24 +13,13 @@ Blog.init(
             autoIncrement: true,
         },
         title: {
-            type: DataTypes.STRING(80),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                notEmpty: true,
-                notNull: {
-                    message: 'Please enter a title for your blog',
-                },
-            },
+
         },
         content: {
-            type: DataTypes.STRING(300),
+            type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [10, 300],
-                notNull: {
-                    message: 'Blog must be at least 10 characters.',
-                },
-            },
         },
         date_created: {
             type: DataTypes.DATE,
@@ -47,6 +36,7 @@ Blog.init(
     },
     {
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'blog',

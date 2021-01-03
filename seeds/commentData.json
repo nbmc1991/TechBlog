@@ -1,17 +1,14 @@
 [
     {
         "text": "a piece of text placed within a program to help other users to understand it, which the computer ignores when running the program.",
-        "user_id": 1,
-        "post_id": 1
+        "user_id": 1
     },
     {
         "text": "express (an opinion or reaction).",
-        "user_id": 2,
-        "post_id": 2
+        "user_id": 2
     },
     {
         "text": "test",
-        "user_id": 3,
-        "post_id": 3
-    },
+        "user_id": 3
+    }
 ]

@@ -1,6 +1,14 @@
 const router = require('express').Router();
-const { Blog } = require('../../models');
+const { Blog, User, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
+
+// router.get('/', async (req, res) => {
+
+//     let blogData = await Blog.findAll({
+//         include: [{ model: User }, { model: Comment }],
+//     });
+//     return res.json(blogData);
+// });
 
 router.post('/', withAuth, async (req, res) => {
     try {

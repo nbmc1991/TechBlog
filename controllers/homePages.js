@@ -1,51 +1,20 @@
 const router = require('express').Router();
-const { Blog, User } = require('../models');
+const { Blog, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 // GET ALL BLOGS FOR HOMEPAGE
 router.get('/', async (req, res) => {
     try {
-        const dbBlogData = await Blog.findAll({
-            include: [
-                {
-                    model: User,
-                    attributes: ['name'],
-                },
-            ],
+        const blogData = await Blog.findAll({
+            include: [{ model: User, attributes: ['name'] }],
         });
-        const blogs = dbBlogData.map((blog) =>
-            blog.get({ plain: true })
-        );
+        const blogs = blogData.map(blog => blog.get({ plain: true }));
+
         res.render('homepage', {
             blogs,
-            loggedIn: req.session.loggedIn,
-        });
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
-
-
-router.get('/blog/:id', async (req, res) => {
-    try {
-        const blogData = await Blog.findByPk(req.params.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['name'],
-                },
-            ],
-        });
-
-        const blog = blogData.get({ plain: true });
-
-        res.render('blog', {
-            ...blog,
             logged_in: req.session.logged_in
         });
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).json(err.message);
     }
 });
 
@@ -62,6 +31,19 @@ router.get('/profile', withAuth, async (req, res) => {
         res.render('profile', {
             ...user,
             logged_in: true
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/edit-blog/:id', withAuth, async (req, res) => {
+    try {
+        const blogData = await Blog.findByPk(req.params.id);
+        const blog = blogData.get({ plain: true });
+        res.render('editPost', {
+            ...blog,
+            logged_in: req.session.logged_in
         });
     } catch (err) {
         res.status(500).json(err);
