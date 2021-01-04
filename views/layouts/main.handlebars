@@ -19,7 +19,7 @@
             <nav>
                 <!-- Conditionally render login or logout links -->
                 {{#if logged_in}}
-                <a href="/profile">profile</a> |
+                <a href="/dashboard">dashboard</a> |
                 <button class="no-button" id="logout">logout</button>
                 {{else}}
                 <a href="/login">login</a>
@@ -34,10 +34,10 @@
                 <article class="card">
                     <div class="card-header flex-row justify-space-between">
                         <h2>
-                            <a href="/post/{{id}}">{{title}}</a>
+                            <a href="/blog/{{blog.id}}">{{blog.title}}</a>
                         </h2>
                         <div>
-                            Posted by {{User.name}} on {{blog.dateCreated}}
+                            Posted by {{User.name}} on {{Blog.dateCreated}}
                         </div>
                     </div>
                     <div class="card-body">

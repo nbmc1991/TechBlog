@@ -1,11 +1,15 @@
 const router = require('express').Router();
 const { Blog, User, Comment } = require('../models');
+const { findByPk } = require('../models/User');
 const withAuth = require('../utils/auth');
 // GET ALL BLOGS FOR HOMEPAGE
 router.get('/', async (req, res) => {
     try {
         const blogData = await Blog.findAll({
-            include: [{ model: User, attributes: ['name'] }],
+            include: [{
+                model: User, attributes: ['name'],
+            },
+            ],
         });
         const blogs = blogData.map(blog => blog.get({ plain: true }));
 
@@ -37,7 +41,33 @@ router.get('/profile', withAuth, async (req, res) => {
     }
 });
 
-router.get('/edit-blog/:id', withAuth, async (req, res) => {
+//route to view blog by id
+router.get('/blog/:id', async (req, res) => {
+    try {
+        const blogData = await Blog.findByPk(req.params.id, {
+            include: [
+                { model: User, attributes: ['name'] },
+                { model: Comment, attributes: ['text'] }
+
+            ],
+        });
+        const blog = blogData.get({ plain: true });
+        res.render('blog', {
+            ...blog,
+            logged_in: req.session.logged_in
+        });
+    } catch (error) {
+        res.status(500).json(error.message);
+    }
+});
+
+
+
+
+
+
+
+router.get('/edit-blog/:id', async (req, res) => {
     try {
         const blogData = await Blog.findByPk(req.params.id);
         const blog = blogData.get({ plain: true });

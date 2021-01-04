@@ -25,13 +25,17 @@ router.post("/", async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log(req.body)
     try {
+        console.log('HAPPY HAPPY NEW YEAR')
         const userData = await User.findOne({
             where: {
                 email: req.body.email
             }
+
         });
         if (!userData) {
+            console.log('im here')
             res.status(400).json({
                 message: 'Your email or password is incorrect, please try again'
             });
@@ -50,7 +54,9 @@ router.post('/login', async (req, res) => {
             res.json({ user: userData, message: 'Welcome! You are now logged in!' });
         });
     } catch (err) {
+
         res.status(400).json(err);
+
     }
 });
 
