@@ -420,12 +420,12 @@
   }
   
   a {
-    color: #1b89bc;
+    color: rgb(197, 189, 243);
     text-decoration: none;
   }
   
   a:hover {
-    color: #065b83;
+    color: #cfebf8;
     text-decoration: underline;
   }
   
