@@ -6,7 +6,7 @@ const newFormHandler = async (event) => {
     const description = document.querySelector('#blog-content').value.trim();
 
     if (name && needed_funding && description) {
-        const response = await fetch(`/api/projects`, {
+        const response = await fetch(`/api/blogs`, {
             method: 'POST',
             body: JSON.stringify({ name, needed_funding, description }),
             headers: {
@@ -15,7 +15,7 @@ const newFormHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/dashboard');
         } else {
             alert('Failed to create blog');
         }
@@ -31,7 +31,7 @@ const delButtonHandler = async (event) => {
         });
 
         if (response.ok) {
-            document.location.replace('/profile');
+            document.location.replace('/dashboard');
         } else {
             alert('Failed to delete blog');
         }
