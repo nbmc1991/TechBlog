@@ -63,10 +63,6 @@ router.get('/blog/:id', async (req, res) => {
 
 
 
-
-
-
-
 router.get('/edit-blog/:id', async (req, res) => {
     try {
         const blogData = await Blog.findByPk(req.params.id);
